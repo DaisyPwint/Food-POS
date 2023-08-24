@@ -1,36 +1,19 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import Menu from "./components/Menu";
-import Category from "./components/Category";
-import {categories,menu} from './data'
+import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import MenuDetail from "./components/MenuDetail";
 
-const allCategory = {
-  'id' : 0,
-  'catName' : 'all'
-}
-
-const categoriesWithAll = [allCategory,...categories];
-
-function App() {
-  const [menuItems,setMenuItems] = useState(menu);
-  const [catItems,setCatItems] = useState(categoriesWithAll);
-
-  const filterTypes = (category) => {
-    if(category === 'all'){
-      setMenuItems(menu);
-      return
-    }
-    setMenuItems(menu.filter((item) => (item.category === category)));
-  }
-
+function App() {  
   return (
-    <>
-      <Header/>
-      <div>
-        <Category categories={catItems} filterTypes={filterTypes}/>
-        <Menu menu={menuItems}/>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home/>}/>
+          <Route path="menu" element={<Home/>}/>
+          <Route path="menu/:id" element={<MenuDetail/>}/>
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 

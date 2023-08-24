@@ -2,7 +2,7 @@ import React from 'react'
 
 const Menu = ({menu}) => {
   return (
-    <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">      
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-3">      
       {
         menu.map((item,index) => (
           <div key={index} className="border shadow-lg rounded-lg cursor-pointer hover:scale-105 ease-in-out 
@@ -17,7 +17,7 @@ const Menu = ({menu}) => {
           </div>
         ))
       }
-    </section>
+    </div>
   )
 }
 
