@@ -6,10 +6,12 @@ export const jsonServerApi = createApi({
     tagTypes:['Menu'],
     endpoints: (builder) => ({
         getMenu: builder.query({
-            query: () => '/menu',
-            providesTags: ['Menu']
+            query: () => '/menu'
+        }),
+        getMenuById: builder.query({
+            query: (id) => `menu/${id}`
         })
     })
 })
 
-export const {useGetMenuQuery} = jsonServerApi;
+export const {useGetMenuQuery,useGetMenuByIdQuery} = jsonServerApi;

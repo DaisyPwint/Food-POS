@@ -21,4 +21,7 @@
     .btn{
         @apply py-10px rounded-md border-none flex gap-2.5 justify-evenly items-center cursor-pointer w-full;
     }
+    a.active{
+        @apply bg-gray-900 text-white;
+    }
 }

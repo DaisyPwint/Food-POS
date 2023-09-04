@@ -1,5 +1,4 @@
-import Category from '../components/Category'
-import Menu from '../components/Menu'
+// import Menu from './Menu'
 import { useGetMenuQuery } from "../app/services/jsonServerApi";
 
 const Home = () => {
@@ -11,10 +10,10 @@ const Home = () => {
       {
         error ? (<p>Error Occur!</p>):
         isLoading ? (<p>Loading...</p>):
-        data ? (<>
-          <Category categories={data}/>
-          <Menu menu={data}/>
-        </>) : null
+        data ? (<section>
+        <p>Home Section</p>
+        {/* <Menu menu={data}/> */}
+        </section>) : null
       }
     </main>
   )

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import MenuDetail from "./components/MenuDetail";
+import Layout from "./layout/Layout";
+import { Home, About, Cart, Menu, MenuDetail } from '@pages'
 
 function App() {  
   return (
@@ -9,8 +8,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
-          <Route path="menu" element={<Home/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="menu" element={<Menu/>}/>
           <Route path="menu/:id" element={<MenuDetail/>}/>
+          <Route path="cart" element={<Cart/>}/>
         </Route>
       </Routes>
     </Router>
