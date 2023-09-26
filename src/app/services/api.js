@@ -1,12 +1,12 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
-export const jsonServerApi = createApi({
-    reducerPath: 'jsonServerApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/'}),
+export const menuApi = createApi({
+    reducerPath: 'menuApi',
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000/'}),
     tagTypes:['Menu'],
     endpoints: (builder) => ({
         getMenu: builder.query({
-            query: () => '/menu'
+            query: () => 'menu'
         }),
         getMenuById: builder.query({
             query: (id) => `menu/${id}`
@@ -14,4 +14,4 @@ export const jsonServerApi = createApi({
     })
 })
 
-export const {useGetMenuQuery,useGetMenuByIdQuery} = jsonServerApi;
+export const {useGetMenuQuery,useGetMenuByIdQuery} = menuApi;

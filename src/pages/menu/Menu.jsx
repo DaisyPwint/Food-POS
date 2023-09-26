@@ -1,12 +1,14 @@
-import React from 'react'
-import { useGetMenuQuery } from "../../app/services/jsonServerApi";
+import { useGetMenuQuery } from "../../app/services/api";
 import { Link, useSearchParams } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import { PlusIcon } from '@heroicons/react/24/outline';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../slices/cartSlice';
 
 const Menu = () => {
   const {data:menu,isLoading,error} = useGetMenuQuery();
-
+  // const {menu} = useSelector(state => state.menu);
+  const dispatch = useDispatch();
+  
   const [searchParams,setSearchParams] = useSearchParams();
   const filterType = searchParams.get('category');
 
@@ -16,19 +18,19 @@ const Menu = () => {
   return (
     <section>
       {
-      error ? (<p>Error occured!</p>) : isLoading ? (<p>Loading...</p>) : menu ? (
+      error ? (<p>An error occured!:{error.originalStatus}</p>) : isLoading ? (<p>Loading...</p>) : menu ? (
         <>
           <h1>Menu Category</h1>
     
           <div className="flex flex-wrap my-4">
                 {
-                  filterType ? <button onClick={() => setSearchParams({})} className="flex items-center p-3 m-2 cursor-pointer border-2 border-primary rounded-md drop-shadow-md outline-none hover:bg-primary hover:text-white">All</button> : null
+                  filterType ? <button onClick={() => setSearchParams({})} className="flex items-center p-3 m-2 cursor-pointer border-2 border-primary-200 rounded-md drop-shadow-md outline-none hover:bg-primary-200 hover:text-white">All</button> : null
                 }
                 {
                   displayCategory.map(category => (
                     <button
                   key={category}
-                  className={`flex items-center p-2 m-2 cursor-pointer transition duration-150 border-2 border-primary rounded-md drop-shadow-md outline-none hover:bg-primary hover:text-white ${filterType === category ? 'bg-primary text-white': ''}`}
+                  className={`flex items-center p-2 m-2 cursor-pointer transition duration-150 border-2 border-primary-200 rounded-md drop-shadow-md outline-none hover:bg-primary-200 hover:text-white ${filterType === category ? 'bg-primary-200 text-white': ''}`}
                 onClick={() => setSearchParams({category: category})}
                 >
                   <p>{category}</p>
@@ -45,11 +47,11 @@ const Menu = () => {
                 duration-300"/>
                   <div className='px-4 pt-4'>
                     <h1 className="capitalize">{item.name}</h1>
-                    <p className="text-xl mt-3 font-bold text-primary"><span className="text-sm">$</span>{item.price}</p>
+                    <p className="text-xl mt-3 font-bold text-primary-200"><span className="text-sm">$</span>{item.price}</p>
                   </div>
                 </Link>
                 <div className='flex items-center justify-end gap-5 pt-2 px-4 pb-4'>       
-                    <PlusCircleIcon className="h-12 w-12 text-primary cursor-pointer"/>
+                    <button className='bg-primary-200 rounded-md outline-none py-2 px-3' onClick={() => dispatch(addToCart(item))}><PlusIcon className="h-6 w-6 text-white"/></button>
                 </div>                
               </div>
             ))

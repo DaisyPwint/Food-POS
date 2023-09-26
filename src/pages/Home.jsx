@@ -1,5 +1,5 @@
 // import Menu from './Menu'
-import { useGetMenuQuery } from "../app/services/jsonServerApi";
+import { useGetMenuQuery } from "../app/services/api";
 
 const Home = () => {
 
@@ -12,7 +12,6 @@ const Home = () => {
         isLoading ? (<p>Loading...</p>):
         data ? (<section>
         <p>Home Section</p>
-        {/* <Menu menu={data}/> */}
         </section>) : null
       }
     </main>
